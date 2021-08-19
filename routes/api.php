@@ -24,7 +24,30 @@ Route::post('insertusuario', 'App\Http\Controllers\UserController@insertusuario'
 Route::put('updateusu/{id}', 'App\Http\Controllers\UserController@updateusu')->middleware('auth:api');
 
 Route::post('login', 'App\Http\Controllers\UserController@login');
+Route::post('carga/{tip}/{id}', 'App\Http\Controllers\SubirArchivoController@subirarchivo');
+Route::post('cargapro', 'App\Http\Controllers\SubirArchivoController@subirarchivoimg');
+Route::post('cargaaudio', 'App\Http\Controllers\SubirArchivoController@subirarchivoaudio');
 
+Route::post('cargatabla', 'App\Http\Controllers\TablaArchivoController@insertarchivo');
+
+Route::get('getmibancoC/{id}', 'App\Http\Controllers\TablaArchivoController@getmibancoC')->middleware('auth:api');
+Route::get('getmibancoA/{id}', 'App\Http\Controllers\TablaArchivoController@getmibancoA')->middleware('auth:api');
+Route::get('getmibancoP/{id}', 'App\Http\Controllers\TablaArchivoController@getmibancoP')->middleware('auth:api');
+Route::get('getmibancoR', 'App\Http\Controllers\TablaArchivoController@getmibancoR')->middleware('auth:api');
+Route::put('updatebanco/{id}', 'App\Http\Controllers\TablaArchivoController@updatebanco')->middleware('auth:api');
+
+Route::post('insercoment', 'App\Http\Controllers\ComentariosController@insercoment')->middleware('auth:api');
+Route::get('getcoments', 'App\Http\Controllers\ComentariosController@getcoments')->middleware('auth:api');
+
+Route::post('insertescenario', 'App\Http\Controllers\EscenarioController@insertaescenario')->middleware('auth:api');
+Route::get('getescenarios/{id}', 'App\Http\Controllers\EscenarioController@getescenarios')->middleware('auth:api');
+Route::put('updatefase/{id}', 'App\Http\Controllers\EscenarioController@updatefase')->middleware('auth:api');
+Route::get('getaudios', 'App\Http\Controllers\TablaArchivoController@getaudios')->middleware('auth:api');
+
+
+Route::post('insertafauno', 'App\Http\Controllers\FaunoController@insertafauno')->middleware('auth:api');
+Route::post('insertafados', 'App\Http\Controllers\FadosController@insertafados')->middleware('auth:api');
+Route::post('insertafadosurl', 'App\Http\Controllers\FadosurlController@insertafadosurl')->middleware('auth:api');
 
 Route::get('getuni/{id}', 'App\Http\Controllers\CatUniversidadeController@getUni')->middleware('auth:api');
 Route::get('deluni/{id}', 'App\Http\Controllers\CatUniversidadeController@borrauni')->middleware('auth:api');
@@ -39,5 +62,9 @@ Route::get('getunis/{id}', 'App\Http\Controllers\UserController@getunifiltro')->
 Route::get('obtencatalogo/{op}/{tipo}', 'App\Http\Controllers\CatalogosController@obtencatalogo')->middleware('auth:api');
 Route::get('catalogosuno', 'App\Http\Controllers\CatalogosController@catalogosuno')->middleware('auth:api');
 Route::get('catalogosdos/{id}', 'App\Http\Controllers\CatalogosController@catalogosdos')->middleware('auth:api');
+
+Route::get('getdisciplina', 'App\Http\Controllers\CatDisciplinaController@getdisciplina')->middleware('auth:api');
+Route::get('getnivel', 'App\Http\Controllers\CatNiveleducativoController@getnivel')->middleware('auth:api');
+
 
 

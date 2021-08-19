@@ -16,6 +16,10 @@ class CatDisciplinaController extends Controller
     {
         //
     }
+    public function getdisciplina() {
+        $obten=cat_disciplina::all();  
+        return $obten;  
+    }
 
     /**
      * Show the form for creating a new resource.

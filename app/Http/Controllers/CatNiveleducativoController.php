@@ -16,6 +16,11 @@ class CatNiveleducativoController extends Controller
     {
         //
     }
+    public function getnivel() {
+        $obten=cat_niveleducativo::all();  
+        return $obten;  
+    }
+
 
     /**
      * Show the form for creating a new resource.

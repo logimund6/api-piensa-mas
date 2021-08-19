@@ -68,7 +68,7 @@ class UserController extends Controller
       $token = $tokenResult->token;
 
       if ($request->remember_me) {
-          $token->expires_at = Carbon::now('America/Mexico_City')->addMinute(1);
+          $token->expires_at = Carbon::now('America/Mexico_City')->addHours(3);
       }
 
       $token->save();
