@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Validator;
 use App\Models\subir_archivo;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Storage;
 class SubirArchivoController extends Controller
 {
     /**
@@ -119,7 +119,7 @@ class SubirArchivoController extends Controller
         }
     }
   
-    public function subirarchivoaudio(Request $request){
+    public function subirarchivoaudio(Request $request,$id){
         if($request->hasFile('file')){
             $file=$request->file('file');
             $filename=$file->getClientOriginalName();
@@ -130,12 +130,21 @@ class SubirArchivoController extends Controller
             $ldate = date('Y-m-d');
             $d=rand(10000000,99999999);
             $picture='imgesce'.$d.'.'.$extension;
-  
             $tipofile='Audioesce';      
-          
             $file->move(public_path('Audioesce/'),$picture); 
+
+           if( $id=='s'){
+
+           }else{
+            unlink(public_path('Audioesce/'.$id));
+          
+         
+    
+           }
+
             
-            $ruta='public/'.$tipofile.'/'.$picture;
+            
+            $ruta=$picture;
 
             return $ruta ;
 

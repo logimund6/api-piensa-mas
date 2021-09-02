@@ -26,7 +26,7 @@ class FadosurlController extends Controller
     {
         //
     }
-    public function insertafadosurl(Request $request){
+    public function insertafadosurl(Request $request,$id){
         $validator =  Validator::make($request->all(),[
                 'titulo' => 'required|string|max:255',
                 'descripcion' => 'required|string|max:255',
@@ -35,7 +35,8 @@ class FadosurlController extends Controller
                 'parte' => 'required|string|max:255',
         ]);
      
- 
+        $usermit =fadosurl::where('idescenario', '=', $id)->get();
+        if(count($usermit)==0){
         if($validator->fails()){
             return response()->json([
                 "error" => 'validation_error',
@@ -53,7 +54,26 @@ class FadosurlController extends Controller
                 "error" => "No fue registrado",
                 "message" => "No fue posible registrar el usuario"
             ]);
+        }}else{
+            $patientData = $request->all();
+            fadosurl::where('idescenario', '=', $id)->update($patientData);
+  
+            $return = ['data' => ['msg' => 'fase 2 urls actualizada exitosamente!']];
+            return response()->json($return, 201) ;
+
         }
+    }
+
+    public function getfadosurlfiltro($id) {
+        $usermit =fadosurl::where('idescenario', '=', $id)->get();
+        if(count($usermit)==0){
+return 's';
+
+        }else{
+            return $usermit;  
+        }
+        
+        
     }
     /**
      * Store a newly created resource in storage.

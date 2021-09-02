@@ -16,7 +16,7 @@ class FadosController extends Controller
     {
         //
     }
-    public function insertafados(Request $request){
+    public function insertafados(Request $request,$id){
         $validator =  Validator::make($request->all(),[
                 'fa2p1' => 'required|string|max:255',
                 'fa2p2' => 'required|string|max:255',
@@ -30,7 +30,8 @@ class FadosController extends Controller
                 'idescenario' => 'required|string|max:255',
         ]);
  
-        
+        $usermit =fados::where('idescenario', '=', $id)->get();
+        if(count($usermit)==0){
         if($validator->fails()){
             return response()->json([
                 "error" => 'validation_error',
@@ -48,7 +49,19 @@ class FadosController extends Controller
                 "error" => "No fue registrado",
                 "message" => "No fue posible registrar el usuario"
             ]);
+        }}else{
+            $patientData = $request->all();
+            fados::where('idescenario', '=', $id)->update($patientData);
+  
+            $return = ['data' => ['msg' => 'fase 2 actualizada exitosamente!']];
+            return response()->json($return, 201) ;
         }
+    }
+
+    public function getfadosfiltro($id) {
+
+        $usermit =fados::where('idescenario', '=', $id)->get();
+        return $usermit;  
     }
     /**
      * Show the form for creating a new resource.
