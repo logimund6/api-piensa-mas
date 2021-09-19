@@ -41,16 +41,21 @@ Route::get('getcoments', 'App\Http\Controllers\ComentariosController@getcoments'
 
 Route::post('insertescenario', 'App\Http\Controllers\EscenarioController@insertaescenario')->middleware('auth:api');
 Route::get('getescenarios/{id}', 'App\Http\Controllers\EscenarioController@getescenarios')->middleware('auth:api');
+Route::get('getescenariosall', 'App\Http\Controllers\EscenarioController@getescenariosall')->middleware('auth:api');
+
 Route::put('updatefase/{id}', 'App\Http\Controllers\EscenarioController@updatefase')->middleware('auth:api');
 Route::get('getaudios', 'App\Http\Controllers\TablaArchivoController@getaudios')->middleware('auth:api');
 
 Route::get('getfaunofiltro/{id}', 'App\Http\Controllers\FaunoController@getfaunofiltro')->middleware('auth:api');
 Route::get('getfadosfiltro/{id}', 'App\Http\Controllers\FadosController@getfadosfiltro')->middleware('auth:api');
 Route::get('getfadosurlfiltro/{id}', 'App\Http\Controllers\FadosurlController@getfadosurlfiltro')->middleware('auth:api');
+Route::get('getfatresfiltro/{id}', 'App\Http\Controllers\FatresController@getfatresfiltro')->middleware('auth:api');
 
 
 Route::post('insertafauno/{id}', 'App\Http\Controllers\FaunoController@insertafauno')->middleware('auth:api');
 Route::post('insertafados/{id}', 'App\Http\Controllers\FadosController@insertafados')->middleware('auth:api');
+Route::post('insertafatres/{id}', 'App\Http\Controllers\FatresController@insertafatres')->middleware('auth:api');
+
 Route::post('insertafadosurl/{id}', 'App\Http\Controllers\FadosurlController@insertafadosurl')->middleware('auth:api');
 
 Route::get('getuni/{id}', 'App\Http\Controllers\CatUniversidadeController@getUni')->middleware('auth:api');

@@ -53,6 +53,10 @@ class EscenarioController extends Controller
         $obten=escenario::all()->where( 'idusuario', '=', $id);  
         return $obten;  
     }
+    public function getescenariosall() {
+        $obten=escenario::where( 'estado', '=', 'f')->get(); 
+        return $obten;  
+    }
 
     
     public function updatefase(Request $request, $id)
