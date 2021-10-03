@@ -26,7 +26,9 @@ class EscenarioController extends Controller
                 'palabras_clave' => 'required|string|max:255',
                 'estado' => 'required|string|max:255',
                 'idusuario'=> 'required|string|max:255',
-                'ruta'=>'required|string|max:255'
+                'ruta'=>'required|string|max:255',
+                'nombre'=>'required|string|max:255',
+                'correo'=>'required|string|max:255'
         ]);
 
         

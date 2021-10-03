@@ -17,6 +17,8 @@ class escenario extends Model
         'estado',
         'idusuario',
         'ruta',
+        'nombre',
+        'correo'
       ];
 
 }

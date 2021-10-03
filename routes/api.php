@@ -38,6 +38,9 @@ Route::put('updatebanco/{id}', 'App\Http\Controllers\TablaArchivoController@upda
 
 Route::post('insercoment', 'App\Http\Controllers\ComentariosController@insercoment')->middleware('auth:api');
 Route::get('getcoments', 'App\Http\Controllers\ComentariosController@getcoments')->middleware('auth:api');
+Route::post('insertacomesce', 'App\Http\Controllers\EscecomentController@insertacomesce')->middleware('auth:api');
+
+Route::post('mailtos', 'App\Http\Controllers\MailenvController@basic_email')->middleware('auth:api');
 
 Route::post('insertescenario', 'App\Http\Controllers\EscenarioController@insertaescenario')->middleware('auth:api');
 Route::get('getescenarios/{id}', 'App\Http\Controllers\EscenarioController@getescenarios')->middleware('auth:api');
