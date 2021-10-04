@@ -52,7 +52,8 @@ class EscenarioController extends Controller
         }
     }
     public function getescenarios($id) {
-        $obten=escenario::all()->where( 'idusuario', '=', $id);  
+        //$obten=escenario::all()->where( 'idusuario', '=', $id);  
+        $obten=escenario::where('idusuario', '=', $id)->get();
         return $obten;  
     }
     public function getescenario($id) {
