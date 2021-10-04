@@ -55,6 +55,11 @@ class EscenarioController extends Controller
         $obten=escenario::all()->where( 'idusuario', '=', $id);  
         return $obten;  
     }
+    public function getescenario($id) {
+        $obten=escenario::where( 'id', '=', $id)->get(); 
+        return $obten;  
+    }
+
     public function getescenariosall() {
         $obten=escenario::where( 'estado', '=', 'f')->get(); 
         return $obten;  
@@ -84,6 +89,8 @@ class EscenarioController extends Controller
             return response()->json(ApiError::errorMessage('There was an error performing the update operation', 1011), 500);
         }
     }
+
+   
     /**
      * Show the form for creating a new resource.
      *
