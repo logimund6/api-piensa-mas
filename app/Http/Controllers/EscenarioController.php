@@ -52,8 +52,7 @@ class EscenarioController extends Controller
         }
     }
     public function getescenarios($id) {
-        //$obten=escenario::all()->where( 'idusuario', '=', $id);  
-        $obten=escenario::where('idusuario', '=', $id)->get();
+        $obten=escenario::all()->where( 'idusuario', '=', $id);  
         return $obten;  
     }
     public function getescenario($id) {
@@ -62,7 +61,7 @@ class EscenarioController extends Controller
     }
 
     public function getescenariosall() {
-        $obten=escenario::where( 'estado', '=', 'f')->get(); 
+        $obten=escenario::where( 'estado', '=', 'f')->orWhere('estado', '=', 'r')->orWhere('estado', '=', 'a')->get(); 
         return $obten;  
     }
 

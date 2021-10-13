@@ -47,6 +47,9 @@ Route::get('getescenarios/{id}', 'App\Http\Controllers\EscenarioController@getes
 Route::get('getescenariosall', 'App\Http\Controllers\EscenarioController@getescenariosall')->middleware('auth:api');
 
 Route::get('getescenario/{id}', 'App\Http\Controllers\EscenarioController@getescenario')->middleware('auth:api');
+Route::get('getcomentid/{id}', 'App\Http\Controllers\EscecomentController@getcomentid')->middleware('auth:api');
+
+
 
 Route::put('updatefase/{id}', 'App\Http\Controllers\EscenarioController@updatefase')->middleware('auth:api');
 Route::get('getaudios', 'App\Http\Controllers\TablaArchivoController@getaudios')->middleware('auth:api');

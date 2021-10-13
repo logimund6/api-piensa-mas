@@ -32,6 +32,7 @@ class EscecomentController extends Controller
                 'idescenario' => 'required|string|max:255',
                 'comentario' => 'required|string|max:255',
                 'estado' => 'required|string|max:255',
+                'idadmin'=>'required|string|max:255',
              
         ]);
 
@@ -55,6 +56,11 @@ class EscecomentController extends Controller
             ]);
         }
     }
+    public function getcomentid($id) {
+        $obten=escecoment::where([['comentario', '!=' , 'no data'],['idescenario', '=', $id]] )->orderBy('created_at', 'desc')->get(); 
+        return $obten;  
+    }
+
 
     /**
      * Store a newly created resource in storage.

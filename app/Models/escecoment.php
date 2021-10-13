@@ -12,6 +12,6 @@ class escecoment extends Model
         'idescenario',
         'comentario',
         'estado',
-
+'idadmin',
       ];
 }
