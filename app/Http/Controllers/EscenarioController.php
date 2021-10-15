@@ -26,9 +26,9 @@ class EscenarioController extends Controller
                 'palabras_clave' => 'required|string|max:255',
                 'estado' => 'required|string|max:255',
                 'idusuario'=> 'required|string|max:255',
-                'ruta'=>'required|string|max:255',
-                'nombre'=>'required|string|max:255',
-                'correo'=>'required|string|max:255'
+                'ruta'=>'required|string|max:255'
+                //'nombre'=>'required|string|max:255',
+                //'correo'=>'required|string|max:255'
         ]);
 
         
@@ -36,7 +36,7 @@ class EscenarioController extends Controller
             return response()->json([
                 "error" => 'validation_error',
                 "message" => $validator->errors(),
-            ]);
+            ],400);
         }
         try{
     
@@ -48,11 +48,12 @@ class EscenarioController extends Controller
             return response()->json([
                 "error" => "No fue registrado",
                 "message" => "No fue posible registrar el usuario"
-            ]);
+            ],400);
         }
     }
     public function getescenarios($id) {
-        $obten=escenario::all()->where( 'idusuario', '=', $id);  
+        //$obten=escenario::all()->where( 'idusuario', '=', $id); 
+        $obten=escenario::where('idusuario', '=', $id)->get(); 
         return $obten;  
     }
     public function getescenario($id) {
