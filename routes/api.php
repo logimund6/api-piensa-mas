@@ -44,9 +44,13 @@ Route::post('mailtos', 'App\Http\Controllers\MailenvController@basic_email')->mi
 
 Route::post('insertescenario', 'App\Http\Controllers\EscenarioController@insertaescenario')->middleware('auth:api');
 Route::get('getescenarios/{id}', 'App\Http\Controllers\EscenarioController@getescenarios')->middleware('auth:api');
+Route::get('getescenariosf/{id}/{var}/{op}', 'App\Http\Controllers\EscenarioController@getescenariosf')->middleware('auth:api');
+
 Route::get('getescenariosall', 'App\Http\Controllers\EscenarioController@getescenariosall')->middleware('auth:api');
+Route::get('getescenariosallf/{var}', 'App\Http\Controllers\EscenarioController@getescenariosallf')->middleware('auth:api');
 
 Route::get('getescenario/{id}', 'App\Http\Controllers\EscenarioController@getescenario')->middleware('auth:api');
+
 Route::get('getcomentid/{id}', 'App\Http\Controllers\EscecomentController@getcomentid')->middleware('auth:api');
 
 

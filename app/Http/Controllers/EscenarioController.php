@@ -26,9 +26,9 @@ class EscenarioController extends Controller
                 'palabras_clave' => 'required|string|max:255',
                 'estado' => 'required|string|max:255',
                 'idusuario'=> 'required|string|max:255',
-                'ruta'=>'required|string|max:255'
-                //'nombre'=>'required|string|max:255',
-                //'correo'=>'required|string|max:255'
+                'ruta'=>'required|string|max:255',
+                'nombre'=>'required|string|max:255',
+                'correo'=>'required|string|max:255'
         ]);
 
         
@@ -36,26 +36,26 @@ class EscenarioController extends Controller
             return response()->json([
                 "error" => 'validation_error',
                 "message" => $validator->errors(),
-            ],400);
+            ]);
         }
         try{
     
             $user = escenario::create($request->all());
-            return response()->json(['status','registered exitoso'],200);
+            return $user;
         
         }
         catch(Exception $e){
             return response()->json([
                 "error" => "No fue registrado",
                 "message" => "No fue posible registrar el usuario"
-            ],400);
+            ]);
         }
     }
     public function getescenarios($id) {
-        //$obten=escenario::all()->where( 'idusuario', '=', $id); 
-        $obten=escenario::where('idusuario', '=', $id)->get(); 
+        $obten=escenario::all()->where( 'idusuario', '=', $id);  
         return $obten;  
     }
+
     public function getescenario($id) {
         $obten=escenario::where( 'id', '=', $id)->get(); 
         return $obten;  
@@ -63,6 +63,118 @@ class EscenarioController extends Controller
 
     public function getescenariosall() {
         $obten=escenario::where( 'estado', '=', 'f')->orWhere('estado', '=', 'r')->orWhere('estado', '=', 'a')->get(); 
+        return $obten;  
+    }
+
+
+    public function getescenariosallf($var) {
+        if($var=='f1'){
+            $obten=escenario::where( 'estado', '=', 'f')->orWhere('estado', '=', 'r')->orWhere('estado', '=', 'a')->orderBy('created_at', 'desc')->get(); 
+        }
+        if($var=='f2'){
+            $obten=escenario::where( 'estado', '=', 'f')->orWhere('estado', '=', 'r')->orWhere('estado', '=', 'a')->orderBy('created_at', 'asc')->get(); 
+        }
+        if($var=='0'){
+            $obten=escenario::where( 'estado', '=', 'f')->orWhere('estado', '=', 'r')->orWhere('estado', '=', 'a')->orderBy('created_at', 'asc')->get(); 
+        }
+        $obten=escenario::where( 'estado', '=', 'f')->orWhere('estado', '=', 'r')->orWhere('estado', '=', 'a')->get(); 
+        return $obten;  
+    }
+
+    public function getescenariosf($id,$var,$op) {
+
+        if($var=='f1'){
+             
+            if($op=='0'){
+                $obten=escenario::where( [['idusuario', '=', $id],['estado', '=', '0g0']])->orWhere( [['idusuario', '=', $id],['estado', '=', '0']])->orderBy('created_at', 'desc')->get();            
+             }
+             if($op=='1'){
+                $obten=escenario::where( [['idusuario', '=', $id],['estado', '=', '1g1']])->orWhere( [['idusuario', '=', $id],['estado', '=', '1']])->orderBy('created_at', 'desc')->get();            
+             }
+             if($op=='2'){
+                $obten=escenario::where( [['idusuario', '=', $id],['estado', '=', '2g2']])->orWhere( [['idusuario', '=', $id],['estado', '=', '2']])->orderBy('created_at', 'desc')->get();            
+             }
+             if($op=='3'){
+                $obten=escenario::where( [['idusuario', '=', $id],['estado', '=', '3g3']])->orWhere( [['idusuario', '=', $id],['estado', '=', '3']])->orderBy('created_at', 'desc')->get();            
+             }
+             if($op=='4'){
+                $obten=escenario::where( [['idusuario', '=', $id],['estado', '=', '4g4']])->orWhere( [['idusuario', '=', $id],['estado', '=', '4']])->orderBy('created_at', 'desc')->get();            
+             }
+             if($op=='a'){
+                $obten=escenario::where( [['idusuario', '=', $id],['estado', '=', 'a']])->orderBy('created_at', 'desc')->get();            
+             }
+             if($op=='r'){
+                $obten=escenario::where( [['idusuario', '=', $id],['estado', '=', 'r']])->orderBy('created_at', 'desc')->get();            
+             }
+             if($op=='f'){
+                $obten=escenario::where( [['idusuario', '=', $id],['estado', '=', 'f']])->orderBy('created_at', 'desc')->get();            
+             }
+             if($op=='100'){
+                $obten=escenario::where('idusuario', '=', $id)->orderBy('created_at', 'desc')->get();            
+             }
+          
+       
+            }
+        if($var=='f2'){
+            if($op=='0'){
+                $obten=escenario::where( [['idusuario', '=', $id],['estado', '=', '0g0']])->orWhere( [['idusuario', '=', $id],['estado', '=', '0']])->orderBy('created_at', 'asc')->get();            
+             }
+             if($op=='1'){
+                $obten=escenario::where( [['idusuario', '=', $id],['estado', '=', '1g1']])->orWhere( [['idusuario', '=', $id],['estado', '=', '1']])->orderBy('created_at', 'asc')->get();            
+             }
+             if($op=='2'){
+                $obten=escenario::where( [['idusuario', '=', $id],['estado', '=', '2g2']])->orWhere( [['idusuario', '=', $id],['estado', '=', '2']])->orderBy('created_at', 'asc')->get();            
+             }
+             if($op=='3'){
+                $obten=escenario::where( [['idusuario', '=', $id],['estado', '=', '3g3']])->orWhere( [['idusuario', '=', $id],['estado', '=', '3']])->orderBy('created_at', 'asc')->get();            
+             }
+             if($op=='4'){
+                $obten=escenario::where( [['idusuario', '=', $id],['estado', '=', '4g4']])->orWhere( [['idusuario', '=', $id],['estado', '=', '4']])->orderBy('created_at', 'asc')->get();            
+             }
+             if($op=='a'){
+                $obten=escenario::where( [['idusuario', '=', $id],['estado', '=', 'a']])->orderBy('created_at', 'asc')->get();            
+             }
+             if($op=='r'){
+                $obten=escenario::where( [['idusuario', '=', $id],['estado', '=', 'r']])->orderBy('created_at', 'asc')->get();            
+             }
+             if($op=='f'){
+                $obten=escenario::where( [['idusuario', '=', $id],['estado', '=', 'f']])->orderBy('created_at', 'asc')->get();            
+             }
+             if($op=='100'){
+                $obten=escenario::where('idusuario', '=', $id)->orderBy('created_at', 'asc')->get();            
+             } 
+        }
+        if($var=='100'){
+            if($op=='0'){
+                $obten=escenario::where( [['idusuario', '=', $id],['estado', '=', '0g0']])->orWhere( [['idusuario', '=', $id],['estado', '=', '0']])->get();            
+             }
+             if($op=='1'){
+                $obten=escenario::where( [['idusuario', '=', $id],['estado', '=', '1g1']])->orWhere( [['idusuario', '=', $id],['estado', '=', '1']])->get();            
+             }
+             if($op=='2'){
+                $obten=escenario::where( [['idusuario', '=', $id],['estado', '=', '2g2']])->orWhere( [['idusuario', '=', $id],['estado', '=', '2']])->get();            
+             }
+             if($op=='3'){
+                $obten=escenario::where( [['idusuario', '=', $id],['estado', '=', '3g3']])->orWhere( [['idusuario', '=', $id],['estado', '=', '3']])->get();            
+             }
+             if($op=='4'){
+                $obten=escenario::where( [['idusuario', '=', $id],['estado', '=', '4g4']])->orWhere( [['idusuario', '=', $id],['estado', '=', '4']])->get();            
+             }
+             if($op=='a'){
+                $obten=escenario::where( [['idusuario', '=', $id],['estado', '=', 'a']])->get();            
+             }
+             if($op=='r'){
+                $obten=escenario::where( [['idusuario', '=', $id],['estado', '=', 'r']])->get();            
+             }
+             if($op=='f'){
+                $obten=escenario::where( [['idusuario', '=', $id],['estado', '=', 'f']])->get();            
+             }
+             if($op=='100'){
+                $obten=escenario::where('idusuario', '=', $id)->get();            
+             } 
+        }
+   
+
         return $obten;  
     }
 
